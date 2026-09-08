@@ -1,5 +1,5 @@
 from fastapi import FastAPI,HTTPException,status
-from app.schemas import TripRequest,TripResponse
+from app.schemas import TripRequest,TripResponse,Activity
 from app.gemini_client import client
 from fastapi.middleware.cors import CORSMiddleware
 app=FastAPI()
@@ -34,6 +34,17 @@ def generate_trip(trip:TripRequest):
         }
          )
         trip_response=TripResponse.model_validate_json(response.text)
+        total_cost=sum(
+            activity.cost
+            for day in trip_response.itinerary
+            for activity in day.activities
+        )
+        total_cost+=trip_response.transportation.cost
+        if total_cost > trip.budget:
+            raise HTTPException(
+                status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
+                detail="Generated trip exceeds the requested budget"
+            )
         if trip_response.budget>trip.budget:
             raise HTTPException(
                 status_code=500,

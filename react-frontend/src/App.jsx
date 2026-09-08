@@ -89,7 +89,7 @@ const totalCost=tripResult?.itinerary?.reduce((tripTotal,day)=>{
     return total+activity.cost;
   },0);
   return tripTotal+dayTotal;
-},0) ?? 0;
+},0)+tripResult?.transportation?.cost;
 
 
 return(
@@ -243,12 +243,14 @@ return(
 
     <p>Budget: ₹{tripResult.budget} per Person</p>
         <p>Total Estimated Cost:₹{totalCost}</p>
+{tripResult &&
 <div className="transportation">
   <h2>Transportation</h2>
   <p><strong>{tripResult.transportation.mode}</strong></p>
   <p>{tripResult.transportation.description}</p>
-  <p>Estimated cost: ₹{tripResult.transportation.cost}</p>
-</div>    
+  <p>Estimated Cost:₹{tripResult.transportation.cost}</p>
+</div>   
+}
 {tripResult.itinerary.map((day) => (
       <div key={day.day} className="day-card">
         <h2>Day {day.day}</h2>
@@ -260,8 +262,10 @@ return(
     <p>Estimated Cost:{activity.cost}</p>
   </div>
 ))}
+
       </div>
     ))}
+  
   </div>
 )}
 
