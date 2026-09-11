@@ -47,7 +47,11 @@ def generate_trip_plan(trip:TripRequest):
                 status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
                 detail="Generated trip exceeds the requested budget"
             )
-        
+        if trip.days > 30:
+            raise HTTPException(
+                status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
+                detail="Trip duration cannot exceed 30 days"
+            )
     except HTTPException:
         raise
     except Exception as e:
