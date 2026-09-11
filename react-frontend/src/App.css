@@ -63,7 +63,8 @@ header h1 span{
   border-color: darkslategray;
 }
 
-.inputs input.input_error {
+.inputs input.input-error,
+.inputs input.input-error:focus {
   border-color: red;
 }
 
@@ -81,6 +82,7 @@ button:hover{
   cursor: pointer;
   background-color: darkslategray;
   color: white;
+  
 
 }
 .input-error-p {
