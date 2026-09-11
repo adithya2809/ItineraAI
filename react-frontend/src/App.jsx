@@ -89,7 +89,7 @@ const totalCost=tripResult?.itinerary?.reduce((tripTotal,day)=>{
     return total+activity.cost;
   },0);
   return tripTotal+dayTotal;
-},0)+tripResult?.transportation?.cost;
+},0)+(tripResult?.transportation?.cost)??0;
 
 
 return(
@@ -241,7 +241,7 @@ return(
   <div>
     <h1>{tripResult.destination}</h1>
 
-    <p>Budget: ₹{tripResult.budget} per Person</p>
+    <p>Budget: ₹{tripResult.budget/trip.persons} per Person</p>
         <p>Total Estimated Cost:₹{totalCost}</p>
 {tripResult &&
 <div className="transportation">
