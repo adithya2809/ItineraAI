@@ -70,7 +70,7 @@ function App(){
       const data=await response.json();
       console.log("API response:", data);
       if(!response.ok){
-        throw new Error(data.detail||"failed to generate trip")
+        throw new Error(data.detail)
       }
       setTripResult(data);
     }

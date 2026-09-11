@@ -10,13 +10,16 @@ def generate_trip(trip:TripRequest):
 
     Plan a {trip.days}-day trip from {trip.origin} to {trip.destination} including {trip.persons} person(s) in the trip.
 
-    The traveler's budget is ₹{trip.budget} per person.
+    The traveler's budget is ₹{trip.budget} per person.The budget provided is per person. 
+    Calculate the itinerary costs for the entire group of {trip.persons} people, 
+    and return all transportation and activity costs as the estimated total cost for the entire group.
 
     Their interests are: {", ".join(trip.interests)}.
 
     Organize the itinerary by day, with morning,
     afternoon, and evening activities.
     For every activity, include an estimated cost in Indian rupees.
+    
     Include the estimated transportation cost for traveling from the origin to the destination.
     Return the transportation details with:
     - mode of transport
@@ -40,7 +43,9 @@ def generate_trip(trip:TripRequest):
             for activity in day.activities
         )
         total_cost+=trip_response.transportation.cost
-        if total_cost > trip.budget:
+
+        total_budget=trip.budget*trip.persons
+        if total_cost > total_budget:
             raise HTTPException(
                 status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
                 detail="Generated trip exceeds the requested budget"
@@ -50,6 +55,8 @@ def generate_trip(trip:TripRequest):
                 status_code=500,
                 detail="Generated trip exceeds the requested budget"
             )
+    except HTTPException:
+        raise
     except Exception as e:
         print("Gemini Error:",e)
         raise HTTPException(
