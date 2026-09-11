@@ -63,6 +63,10 @@ header h1 span{
   border-color: darkslategray;
 }
 
+.inputs input.input_error {
+  border-color: red;
+}
+
 button{
   display: block;
   background-color: black;
@@ -79,9 +83,10 @@ button:hover{
   color: white;
 
 }
-.input_error{
-  border: 1px solid red;
+.input-error-p {
+  color: red;
 }
+
 
 .day-card {
   border: 1px solid #ddd;

@@ -100,7 +100,7 @@ return(
   <div className="inputs">
   <div className="floating-field">
   <input id="origin" type="text" placeholder=" " value={trip.origin} 
-  className={errors.origin?"input_error":""}
+  className={errors.origin?"input-error":""}
   onChange={(e)=>{
     setTrip({
       ...trip,
@@ -113,12 +113,12 @@ return(
   <label htmlFor="origin">Origin (from)</label>
   </div>
   {errors.origin&&(
-    <p>{errors.origin}</p>  
+    <p className='input-error-p'>{errors.origin}</p>  
     )}
   
   <div className="floating-field">
   <input id="destination" type="text" placeholder=" " value={trip.destination} 
-  className={errors.destination?"input_error":""} 
+  className={errors.destination?"input-error":""} 
   onChange={(e)=>{
     setTrip({
       ...trip,
@@ -131,7 +131,7 @@ return(
   <label htmlFor="destination">Destination</label>
   </div>
   {errors.destination&&(
-    <p>{errors.destination}</p>  
+    <p className='input-error-p'>{errors.destination}</p>  
     )}
    
   <div className="floating-field">
@@ -140,7 +140,7 @@ return(
   type="number"
   placeholder=" "
   value={trip.days}
-  className={errors.days?"input_error":""}
+  className={errors.days?"input-error":""}
   onChange={(e) =>{
     setTrip({
       ...trip,
@@ -154,7 +154,7 @@ return(
   <label htmlFor="days">Days</label>
   </div>
 {errors.days &&
-<p>{errors.days}</p>
+<p  className='input-error-p'>{errors.days}</p>
 }
 
 <div className="floating-field">
@@ -163,7 +163,7 @@ return(
   type="number"
   placeholder=" "
   value={trip.persons}
-  className={errors.persons?"input_error":""}
+  className={errors.persons?"input-error":""}
   onChange={(e) =>{
     setTrip({
       ...trip,
@@ -177,7 +177,7 @@ return(
   <label htmlFor="members">Members</label>
   </div>
 {errors.persons &&
-<p>{errors.persons}</p>
+<p className='input-error-p'>{errors.persons}</p>
 }
 
 <div className="floating-field">
@@ -186,7 +186,7 @@ return(
   type="number"
   placeholder=" "
   value={trip.budget}
-  className={errors.budget?"input_error":""}
+  className={errors.budget?"input-error":""}
   onChange={(e) =>{
     setTrip({
       ...trip,
@@ -200,14 +200,14 @@ return(
 <label htmlFor="budget">Budget per person (in ₹)</label>
 </div>
 {errors.budget &&
-<p>{errors.budget}</p>
+<p className='input-error-p'>{errors.budget}</p>
 }
 <div className="floating-field">
 <input
   id="interests"
   type="text"
   placeholder=" "
-  className={errors.interests?"input_error":""}
+  className={errors.interests?"input-error":""}
   onChange={(e) =>{
     setTrip({
       ...trip,
@@ -223,10 +223,10 @@ return(
 />
 <label htmlFor="interests">Interests (e.g. food, temples, shopping)</label>
 </div>
-</div>
 {errors.interests &&
-<p>{errors.interests}</p>
+<p className='input-error-p'>{errors.interests}</p>
 }
+</div>
   <button onClick={generateTrip} disabled={loading}>{loading?"generating...":"Generate"}</button>
   {loading &&(
   <div className="loading">
