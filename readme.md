@@ -183,6 +183,7 @@ POST /trip/generate/
 7. Business rules check budget and duration constraints.
 8. The final itinerary is returned to the frontend and rendered.
 
+![Working Screenshots](./Working Screenshots/Screenshot 2026-09-11 165609.png)
 ## Error Handling
 
 The app handles common validation and runtime issues such as:
